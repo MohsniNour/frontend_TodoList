@@ -37,6 +37,10 @@ const ResponsiveAppBar = () => {
     history("/todoList");
   };
 
+  const signup = () => {
+    history("/");
+  };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -154,7 +158,7 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={signup}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
