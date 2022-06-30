@@ -78,13 +78,13 @@ export const Textarea = styled.textarea`
   }
 `;
 export const SubmitButton = styled.button`
-  width: 50%;
-  padding: 11px 40%;
+  padding: 11px 10%;
+  margin-left:25px;
   color: #fff;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 200;
   border: none;
-  border-radius: 100px 100px 100px 100px;
+  border-radius: 25px 25px 25px 25px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
   background: rgb(168, 168, 168);

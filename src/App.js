@@ -2,9 +2,9 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Home from "./components/Home";
-import TodoList from "./components/TodoList";
+import TodoList from "./components/Todo/TodoList";
 import SignInSide from "./components/SignIn";
-import TodoAdd from "./components/TodoAdd";
+import TodoAdd from "./components/Todo/TodoAdd";
 
 const App = () => {
   let routes = useRoutes([

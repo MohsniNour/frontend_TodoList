@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Input, Textarea, SubmitButton } from "./common/common";
-import { Marginer } from "./common/marginer";
-import { todoService } from "../services/todo.Service";
+import { Input, Textarea, SubmitButton } from "../common/common";
+import { Marginer } from "../common/marginer";
+import { todoService } from "../../services/todo.Service";
 // import { Navigate } from "react-router-dom";
-import ResponsiveAppBar from "./NavBar";
+import ResponsiveAppBar from "../NavBar";
 
 function TodoAdd(props) {
   // let history = Navigate();
@@ -11,13 +11,11 @@ function TodoAdd(props) {
     toDoName: "",
     toDoDescription: "",
     startDate: "",
-    EndDate: "",
-    user: localStorage.getItem("currentUserId"),
+    endDate: "",
+    user: "nour",
+    toDoType:"started"
   });
-  const showResponse = (response) => {
-    console.log(response);
-    //call to a backend to verify against recaptcha with private key
-  };
+  
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -33,9 +31,9 @@ function TodoAdd(props) {
       setState((prevState) => {
         return { ...prevState, startDate: value };
       });
-    } else if (name === "EndDate") {
+    } else if (name === "endDate") {
       setState((prevState) => {
-        return { ...prevState, EndDate: value };
+        return { ...prevState, endDate: value };
       });
     }
   };
@@ -47,7 +45,7 @@ function TodoAdd(props) {
       state.toDoName &&
       state.toDoDescription &&
       state.startDate &&
-      state.EndDate
+      state.endDate
     ) {
       todoService.addTodo(state);
       // history("/home");
@@ -58,11 +56,11 @@ function TodoAdd(props) {
     <div>
       <ResponsiveAppBar></ResponsiveAppBar>
       <div>
-        <div className="form-style-5 col-6">
+        <div className="form-style-5">
           <h3>Create New Task</h3>
-          <form style={{ alignItems: "center" }}>
+          <form>
             <div className="form-group">
-              <label>Name: </label>
+              <label>Name :  </label>
               <Input
                 id="toDoName"
                 name="toDoName"
@@ -94,8 +92,8 @@ function TodoAdd(props) {
               />
               <label>End date: </label>
               <Input
-                id="EndDate"
-                name="EndDate"
+                id="endDate"
+                name="endDate"
                 type="Date"
                 placeholder="End date"
                 onChange={handleChange}
@@ -103,7 +101,7 @@ function TodoAdd(props) {
               />
             </div>
             <div className="form-group">
-              <Marginer direction="vertical" margin={10} />
+              <Marginer direction="vertical" margin={2} />
               <SubmitButton type="submit" onClick={handleSubmit}>
                 Add new task
               </SubmitButton>
