@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import TodoList from "./components/Todo/TodoList";
 import SignInSide from "./components/SignIn";
 import TodoAdd from "./components/Todo/TodoAdd";
+import TodoUpdate from "./components/Todo/TodoUpdate";
 
 const App = () => {
   let routes = useRoutes([
@@ -12,6 +13,7 @@ const App = () => {
     { path: "/home", element: <Home /> },
     { path: "/todoList", element: <TodoList /> },
     { path: "/todo/add", element: <TodoAdd /> },
+    { path: "/todo/update/:_id", element: <TodoUpdate/> }
     // ...
   ]);
   return routes;

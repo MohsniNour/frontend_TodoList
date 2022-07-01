@@ -7,7 +7,7 @@ import axios from "axios";
 import {Input, Textarea, SubmitButton} from "../common/common";
 import {Marginer} from "../common/marginer";
 import {todoService} from "../../services/todo.Service";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ResponsiveAppBar from "../NavBar";
 import URL from "../../features/constants/services.constants";
 
@@ -15,7 +15,8 @@ import URL from "../../features/constants/services.constants";
 const TodoUpdate = () => {
   const {_id} = useParams();
   const dispatch = useDispatch();
-  let history = Navigate();
+  let history = useNavigate();
+  
 
   
 
@@ -25,16 +26,16 @@ const TodoUpdate = () => {
   
   const fetchTodoDetails = async () => {
     const result = await axios
-      .get(URL.baseApiUrl + URL.todos.fetchTodos + `/${_id}`)
+      .get("http://localhost:5000/todo" + `/${_id}`)
       .catch((err) => {
         console.log("Err", err);
       });
     console.log("todo details", result);
     dispatch(selectedTodo(result.data));
   };
-  console.log("project :", todo);
+  console.log("todo :", todo);
   const [todoById, setTodoById] = useState({});
-  console.log(todoById);
+  console.log("todo ",todoById);
  
   const handleChange = (e) => {
     e.preventDefault();
@@ -69,17 +70,19 @@ const TodoUpdate = () => {
       todoById.startDate &&
       todoById.endDate
     ) {
-      todoService.updateTodo(todoById);
-      // history.push("/projects");
+      todoService.UpdateTodo(todoById);
+      history.push("/todoList");
     }
   };
+  const handleReturn =() => {
+    history("/todoList");
+};
 
   useEffect(() => {
     if (_id && _id !== "") {
       console.log("id", _id);
       fetchTodoDetails();
       console.log("🚀 ~ file: TodoUpdate.jsx ~ line 81 ~ useEffect ~ fetchTodoDetails", fetchTodoDetails)
-      
     }
   }, [_id]);
 
@@ -94,6 +97,7 @@ const TodoUpdate = () => {
         endDate: todo.endDate,
       });
     }
+      console.log("🚀 ~ file: TodoUpdate.jsx ~ line 98 ~ useEffect ~ todoById", todoById)
   }, [todo, _id]);
 
   return (
@@ -138,6 +142,8 @@ const TodoUpdate = () => {
               onChange={handleChange}
               className="ml-1"
             />
+            </div>
+            <div className="form-group">
             <label>End date: </label>
             <Input
               id="EndDate"
@@ -154,6 +160,9 @@ const TodoUpdate = () => {
             <SubmitButton type="submit" onClick={handleSubmit}>
               Update task
             </SubmitButton>
+            <SubmitButton type="submit" onClick={handleReturn}>
+                Return
+              </SubmitButton>
           </div>
         </form>
 )};

@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import TodoComponent from "./TodoComponent";
 import { setTodos } from "../../features/actions/todo.actions";
 import TextField from "@mui/material/TextField";
+import { SubmitButton } from "../common/common";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ResponsiveAppBar from "../NavBar";
 import "./todo.css";
@@ -11,12 +13,16 @@ import "./todo.css";
 const TodoList= () => {
   const tasks = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
+  let history = useNavigate();
 
   const [searchedName, setSearchedName] = useState("");
 
   const handleChange = (e) => {
       e.preventDefault();
       setSearchedName(e.target.value);
+  };
+  const handleSubmit = () => {
+      history("/todo/add");
   };
 
   const fetchTasks =async () => {
@@ -39,13 +45,9 @@ const TodoList= () => {
   return (
       <div>
       <ResponsiveAppBar></ResponsiveAppBar>
-      <div>
-      <div>
-          <button type="submit">
-            <a href="/todo/add">Add new task</a>
-          </button>
-        </div>
-          <TextField id="standard-basic" label="Search" variant="standard" style={{ width: "900px" }} className="ml-5" name="searchedName" onChange={handleChange} />
+          <div className="mb-5">
+            <SubmitButton type="submit" style={{float:"right",marginTop:"8px"}} onClick={handleSubmit}>New task</SubmitButton>
+          <TextField id="standard-basic" label="Search" variant="standard" style={{ width: "1350px",marginTop:"10px",marginLeft:"8px" }} className="ml-5" name="searchedName" onChange={handleChange} />
           <div style={{ maxHeight: "500px", overflowY: "auto", overflowX: "hidden" }} className="global-scroll">
               <Grid container className="tasks-list-container" columns={{ xs: 8, md: 8, lg: 12 }}>
                   <TodoComponent  tasks={searchHandel()} className="ml-5"/>

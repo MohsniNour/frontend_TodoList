@@ -33,7 +33,7 @@ const TodoComponent = ({tasks}) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" icon="pi pi-pencil" href={`/projects/update/${_id}`}>Update</Button>
+        <Button size="small" icon="pi pi-pencil" href={`/todo/update/${_id}`}>Update</Button>
         <Button size="small" icon="pi pi-trash" onClick={deleteTask}>Delete</Button>
       </CardActions>
     </Card>

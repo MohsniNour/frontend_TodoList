@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Input, Textarea, SubmitButton } from "../common/common";
 import { Marginer } from "../common/marginer";
 import { todoService } from "../../services/todo.Service";
-// import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ResponsiveAppBar from "../NavBar";
 
 function TodoAdd(props) {
-  // let history = Navigate();
+  let history = useNavigate();
   const [state, setState] = useState({
     toDoName: "",
     toDoDescription: "",
@@ -48,8 +48,11 @@ function TodoAdd(props) {
       state.endDate
     ) {
       todoService.addTodo(state);
-      // history("/todoList");
+      history("/todoList");
     }
+  };
+  const handleReturn =() => {
+      history("/todoList");
   };
 
   return (
@@ -70,7 +73,7 @@ function TodoAdd(props) {
                 className="ml-1"
               />
             </div>
-            <div className="form-group">
+            <div className="form-group mt-5">
               <label>Description: </label>
               <Textarea
                 id="toDoDescription"
@@ -80,7 +83,7 @@ function TodoAdd(props) {
                 className="ml-1"
               />
             </div>
-            <div className="form-group">
+            <div className="form-group mt-5">
               <label>Start date: </label>
               <Input
                 id="startDate"
@@ -90,6 +93,8 @@ function TodoAdd(props) {
                 onChange={handleChange}
                 className="ml-1"
               />
+              </div>
+              <div className="form-group mt-5">
               <label>End date: </label>
               <Input
                 id="endDate"
@@ -99,11 +104,14 @@ function TodoAdd(props) {
                 onChange={handleChange}
                 className="mr-1"
               />
-            </div>
+              </div>
             <div className="form-group">
               <Marginer direction="vertical" margin={2} />
               <SubmitButton type="submit" onClick={handleSubmit}>
                 Add new task
+              </SubmitButton>
+              <SubmitButton type="submit" onClick={handleReturn}>
+                Return
               </SubmitButton>
             </div>
           </form>
