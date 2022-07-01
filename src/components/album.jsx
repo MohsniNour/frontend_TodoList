@@ -40,11 +40,6 @@ export default function Album() {
       <CssBaseline />
       <ResponsiveAppBar></ResponsiveAppBar>
       <main>
-        <div>
-          <button type="submit">
-            <a href="/todo/add">Add new task</a>
-          </button>
-        </div>
         <Box
           sx={{
             bgcolor: "background.paper",

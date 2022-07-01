@@ -9,9 +9,9 @@ export const todoService = {
 };
 
 async function deleteTodo(id) {
-  return await axios.delete("http://localhost:5000/todo", id)
+  return await axios.delete("http://localhost:5000/todo/"+id)
     .then((res) => {
-      console.log("todo!");
+      console.log("todo deleted !");
     })
     .catch((err) => {
       console.log(err);

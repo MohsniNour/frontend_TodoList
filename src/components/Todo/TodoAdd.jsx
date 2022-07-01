@@ -48,7 +48,7 @@ function TodoAdd(props) {
       state.endDate
     ) {
       todoService.addTodo(state);
-      // history("/home");
+      // history("/todoList");
     }
   };
 

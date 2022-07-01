@@ -40,6 +40,11 @@ const TodoList= () => {
       <div>
       <ResponsiveAppBar></ResponsiveAppBar>
       <div>
+      <div>
+          <button type="submit">
+            <a href="/todo/add">Add new task</a>
+          </button>
+        </div>
           <TextField id="standard-basic" label="Search" variant="standard" style={{ width: "900px" }} className="ml-5" name="searchedName" onChange={handleChange} />
           <div style={{ maxHeight: "500px", overflowY: "auto", overflowX: "hidden" }} className="global-scroll">
               <Grid container className="tasks-list-container" columns={{ xs: 8, md: 8, lg: 12 }}>
