@@ -3,7 +3,12 @@ const URL = {
 
   todos: {
     fetchTodos: `/todoList`,
-    addTodo: `/todo/todo/add`,
+    addTodo: `/todo/add`,
+  },
+
+  users: {
+    fetchTodos: `/users`,
+    addTodo: `/user/add`,
   },
 };
 
