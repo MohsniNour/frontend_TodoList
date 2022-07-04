@@ -16,13 +16,9 @@ const TodoUpdate = () => {
   const {_id} = useParams();
   const dispatch = useDispatch();
   let history = useNavigate();
-  
-
-  
 
   const todo = useSelector((state) => state.todo);
   console.log("🚀 ~ file: TodoUpdate.jsx ~ line 23 ~ TodoUpdate ~ todo", todo)
-  
   
   const fetchTodoDetails = async () => {
     const result = await axios

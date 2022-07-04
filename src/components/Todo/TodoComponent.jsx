@@ -16,7 +16,7 @@ const TodoComponent = ({tasks}) => {
         };
         const { _id, toDoName, toDoDescription, startDate, endDate } = task;
         return (
-            <Card sx={{ maxWidth: 345 }} className="ml-5" style={{backgroundColor:"gainsboro",marginLeft:"5px",marginTop:"5px"}} key={_id}>
+            <Card sx={{ maxWidth: 345 }} style={{backgroundColor:"gainsboro",marginLeft:"15px",marginTop:"15px"}} key={_id}>
 
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

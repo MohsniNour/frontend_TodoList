@@ -47,9 +47,9 @@ const TodoList= () => {
       <ResponsiveAppBar></ResponsiveAppBar>
           <div className="mb-5">
             <SubmitButton type="submit" style={{float:"right",marginTop:"8px"}} onClick={handleSubmit}>New task</SubmitButton>
-          <TextField id="standard-basic" label="Search" variant="standard" style={{ width: "1350px",marginTop:"10px",marginLeft:"8px" }} className="ml-5" name="searchedName" onChange={handleChange} />
+          <TextField id="standard-basic" label="Search" variant="standard" style={{ width: "1330px",marginTop:"10px",marginLeft:"8px" }} className="ml-5" name="searchedName" onChange={handleChange} />
           <div style={{ maxHeight: "500px", overflowY: "auto", overflowX: "hidden" }} className="global-scroll">
-              <Grid container className="tasks-list-container" columns={{ xs: 8, md: 8, lg: 12 }}>
+              <Grid container className="tasks-list-container ml-5" columns={{ xs: 8, md: 8, lg: 12 }}>
                   <TodoComponent  tasks={searchHandel()} className="ml-5"/>
               </Grid>
           </div>
