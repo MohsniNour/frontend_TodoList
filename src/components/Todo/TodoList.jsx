@@ -37,7 +37,7 @@ const TodoList= () => {
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  });
 
   console.log("Tasks:", tasks);
   console.log("searched Name", searchedName);
