@@ -11,46 +11,57 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-
-function Copyright(props) {
-    let history = useNavigate();
-  const [state, setState] = useState({
-    name: "",
-    email: "",
-    startDate: "",
-    endDate: "",
-    user: "nour",
-    toDoType:"started"
-  });
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { userService } from "../services/user.Service";
 
 const theme = createTheme();
 
 export default function SignUpSide() {
-  const history = useNavigate();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  let history = useNavigate();
+  const [state, setState] = useState({
+    userName: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    if (name === "userName") {
+      setState((prevState) => {
+        return { ...prevState, userName: value };
+      });
+    } else if (name === "email") {
+      setState((prevState) => {
+        return { ...prevState, email: value };
+      });
+    } else if (name === "password") {
+      setState((prevState) => {
+        return { ...prevState, password: value };
+      });
+    }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(state);
+    if (
+      state.userName &&
+      state.email &&
+      state.password
+    ) {
+      userService.addUser(state);
+      history("/");
+    }
+  };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   });
+  // };
   const handlePage = () => {
     history("/home");
   };
@@ -77,7 +88,7 @@ export default function SignUpSide() {
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
-              my: 4,
+              my: 12,
               mx: 4,
               display: "flex",
               flexDirection: "column",
@@ -93,16 +104,16 @@ export default function SignUpSide() {
             <Box
               component="form"
               noValidate
-              onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
                 <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="name"
-                label="Name"
-                name="name"
+                id="userName"
+                label="User Name"
+                name="userName"
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
@@ -113,6 +124,7 @@ export default function SignUpSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
@@ -123,23 +135,14 @@ export default function SignUpSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="confirmPassword"
-                label="confirm Password"
-                type="password"
-                id="confirmPassword"
-                autoComplete="current-password"
+                onChange={handleChange}
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={handlePage}
+                onClick={handleSubmit}
               >
                 Sign up
               </Button>
@@ -150,7 +153,6 @@ export default function SignUpSide() {
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>
