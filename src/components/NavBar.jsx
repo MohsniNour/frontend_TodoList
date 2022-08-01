@@ -38,6 +38,7 @@ const ResponsiveAppBar = () => {
   };
 
   const signup = () => {
+    localStorage.clear();
     history("/");
   };
 

@@ -40,6 +40,21 @@ async function getAll() {
     });
 }
 
+// async function signinUser(user) {
+//   return await axios
+//     .post("http://localhost:5000/auth/login", user,{})
+//     .then((res) => {
+//       console.log("🚀 ~ file: user.Service.js ~ line 48 ~ .then ~ res", res.data.user)
+//       console.log("jjjjj",res.data)
+//       localStorage.setItem("token", res.data.tokens.access.token)
+//       console.log("user connected!");
+      
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
+
 async function addUser(user) {
   return await axios
     .post("http://localhost:5000/users/add", user)
@@ -61,3 +76,5 @@ async function UpdateUser(user) {
       console.log(err);
     });
 }
+
+
